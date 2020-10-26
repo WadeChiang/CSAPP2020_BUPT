@@ -1,12 +1,21 @@
-#include <bits/stdc++.h>
-
-int main()
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <iostream>
+using namespace std;
+long long binpow(long long a, long long b, long long m)
 {
-    int a=0xf0000000,b=0x00000002;
-    std::cout<<static_cast<long>(a)<<" "<<static_cast<long>(b)<<std::endl;
-    unsigned long c=static_cast<long>(a)*static_cast<long>(b);
-    std::cout<<a*b<<std::endl;
-    printf("%d,%x\n%d,%x\n",a,a,b,b);
-    printf("%lx\n%lu\n",c,(long signed)c);
-    return 0;
+    a %= m;
+    long long res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = res * a % m;
+        a = a * a % m;
+        b >>= 1;
+    }
+    return res;
+}
+int main(){
+    cout<<binpow(2, 0, 998244353);
 }
